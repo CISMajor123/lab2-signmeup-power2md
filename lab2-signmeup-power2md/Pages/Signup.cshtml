@@ -1,0 +1,133 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "JMU Football Pre-Game Reservation";
+}
+
+<div class="text-center">
+    <h1 class="display-4">JMU Pep Rally & Bonfire</h1>
+    <p class="lead">
+        Reserve your spot for the event below!
+    </p>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Event Reservation</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <!-- We'll add form fields here step by step -->
+                    <div class="form-group mb-3">
+                        <label asp-for="GuestName" class="form-
+label">Full Name:</label>
+                        <input asp-for="GuestName" class="form-
+control" />
+                        <span asp-validation-for="GuestName"
+                              class="text-danger"></span>
+                    </div>
+                    <!-- Email Field -->
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="form-label">Email Address:</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <!-- Dropdown for Academic Year -->
+                    <div class="form-group mb-3">
+                        <label asp-for="AcademicYear" class="form-label">
+                            Academic
+                            Year:
+                        </label>
+                        <select asp-for="AcademicYear" class="form-control">
+                            <option value="">Select Academic Year </option>
+                            <option value="Freshman">Freshman</option>
+                            <option value="Sophomore">Sophomore</option>
+                            <option value="Junior">Junior</option>
+                            <option value="Senior">Senior</option>
+                        </select>
+                        <span asp-validation-for="AcademicYear" class="text-danger"></span>
+                    </div>
+                    <!-- Text Area for Major Entry -->
+                    <div class="form-group mb-3">
+                        <label asp-for="Major" class="form-label">
+                            Enter your
+                            major:
+                        </label>
+<textarea asp-for="Major" class="form-control"
+          rows="3"></textarea>
+                        <span asp-validation-for="Major" class="text-danger"></span>
+                    </div>
+                    <!-- Dropdown for RSVP -->
+                    <div class="form-group mb-3">
+                        <label asp-for="RSVP" class="form-label">
+                            RSVP:
+                        </label>
+                        <select asp-for="RSVP" class="form-control">
+                            <option value="">Select if you will be attending</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <span asp-validation-for="RSVP" class="text-danger"></span>
+                    </div>
+                    <!-- Dropdown for T-shirt Size -->
+                    <div class="form-group mb-3">
+                        <label asp-for="Tshirt" class="form-label">
+                            T-Shirt
+                            Size:
+                        </label>
+                        <select asp-for="Tshirt" class="form-control">
+                            <option value="">Select your t-shirt size </option>
+                            <option value="S">Small</option>
+                            <option value="M">Medium</option>
+                            <option value="L">Large</option>
+                            <option value="XL">Extra Large</option>
+                        </select>
+                        <span asp-validation-for="Tshirt" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <button type="submit" class="btn btn-primary">
+                            Submit
+                            Reservation
+                        </button>
+                        <button type="button" class="btn btn-secondary"
+                                onclick="populateForm()">
+                            Populate Test Data
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary"
+                                onclick="clearForm()">
+                            Clear Form
+                        </button>
+                    </div>
+                </form>
+                @if (ViewData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success mt-4">
+                        <h4>Reservation Confirmed!</h4>
+                        <p>@ViewData["SuccessMessage"]</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function populateForm() {
+    document.querySelector('[name="GuestName"]').value = 'James Madison';
+    document.querySelector('[name="Email"]').value = 'jmadison@dukes.jmu.edu';
+    document.querySelector('[name="AcademicYear"]').value = 'Senior';
+    document.querySelector('[name="Major"]').value = 'CIS';
+    document.querySelector('[name="RSVP"]').value = 'Yes';
+    document.querySelector('[name="Tshirt"]').value = 'L';
+    }
+    function clearForm() {
+    document.querySelector('[name="GuestName"]').value = '';
+    document.querySelector('[name="Email"]').value = '';
+    document.querySelector('[name="AcademicYear"]').value = '';
+    document.querySelector('[name="Major"]').value = '';
+    document.querySelector('[name="RSVP"]').value = '';
+    document.querySelector('[name="Tshirt"]').value = '';
+    }
+</script>
